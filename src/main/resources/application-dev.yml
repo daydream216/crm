@@ -1,0 +1,67 @@
+# 应用服务 WEB 访问端口
+server:
+  port: 8089
+  servlet:
+    context-path: /crm
+mybatis-plus:
+  mapper-locations: mapper/**.xml # Mapper.xml文件地址，当前这个是默认值。
+  type-aliases-package: com.xxxx.crm.pojo,com.xxxx.crm.vo,com.xxxx.crm.mapper,com.xxxx.crm.query,com.xxxx.crm.model
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  mvc:
+    path match:
+      matching-strategy: ant_path_matcher
+  freemarker: ## freemarker
+    suffix: .ftl
+    content-type: text/html
+    charset: UTF-8
+    template-loader-path: classpath:/views/
+  devtools:  ## 启⽤热部署
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+  datasource: ##德鲁伊连接池
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/crm?characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+    druid: #德鲁伊连接池配置信息
+      initial-size: 5 #初始化连接数
+      max-active: 30 #最大连接数
+      min-idle: 5 #最小连接数
+      # 配置获取连接等待超时的时间
+      max-wait: 60000  #如果连接都被占用，最大等待时间1min=60000ms
+      validation-query: SELECT 1 FROM DUAL  #通过从续表查询来监控是否连接数据库，语句执行能连接，语句不执行没连接
+      # 配置一个连接在池中最小空闲的时间，单位是毫秒
+      min-evictable-idle-time-millis: 300000
+      test-while-idle: true
+      # 开启SQL监控、防火墙监控、日志监控
+      filters: stat,wall,slf4j
+      # 配置DruidStatViewServlet
+      stat-view-servlet:
+        # 登录名
+        login-username: admin
+        # 登录密码
+        login-password: admin
+        url-pattern: /druid/*
+        # IP白名单(没有配置或者为空，则允许所有访问)
+        allow: 192.167.10.1,127.0.0.1  # 本机和设置的ip可以访问后台管理界面
+        reset-enable: false # 不要重置
+        # 启用控制台-后台管理界面，必须启用，否则访问界面会404
+        enabled: true
+
+## 设置 dao ⽇志打印级别
+logging:
+  level:
+    com:
+      xxxx:
+        crm:
+          dao: debug
+
+-Dpagehelper:
+  banner=false:
