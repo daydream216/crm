@@ -38,14 +38,14 @@ layui.use(['form', 'layer','formSelects'], function () {
                 setTimeout(function () {
                     // 关闭弹出层（返回值为index的弹出层）
                     top.layer.close(index);
-                    top.layer.msg("操作成功！");
+                    top.layer.msg(res.msg);
                     // 关闭所有iframe层
                     layer.closeAll("iframe");
                     // 刷新⽗⻚⾯
                     parent.location.reload();
                 }, 500);
             } else {
-                layer.msg(res.msg, {icon: 5});
+                layer.msg("操作失败！", {icon: 5});
             }
         });
         return false;

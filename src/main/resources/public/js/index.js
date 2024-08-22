@@ -49,7 +49,7 @@ layui.use(['form','jquery','jquery_cookie'], function () {
                     });
                 }else{
                     //提示信息
-                    layer.msg(data.msg);
+                    layer.msg("登录失败!");
                 }
             }
         });

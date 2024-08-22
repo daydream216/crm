@@ -36,7 +36,7 @@ form.on("submit(saveBtn)",function(data){
                     window.parent.location.href = ctx + "/index";
                 });
             }else{
-                layer.msg(data.msg);
+                layer.msg("失败");
             }
         }
     });

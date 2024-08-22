@@ -57,10 +57,10 @@ layui.use(['table', 'treetable'], function () {
             layer.confirm("确认删除当前记录?",{icon: 3, title: "菜单管理"},function (index) {
                 $.post(ctx+"/module/delete",{mid:data.id},function (data) {
                     if(data.code==200){
-                        layer.msg("删除成功");
+                        layer.msg(data.msg);
                         window.location.reload();
                     }else{
-                        layer.msg(data.msg,{icon: 5});
+                        layer.msg("删除成功",{icon: 5});
                     }
                 })
             })

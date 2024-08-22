@@ -92,7 +92,7 @@ layui.use(['table','layer'],function(){
                     if(data.code==200){
                         tableIns.reload();
                     }else{
-                        layer.msg(data.msg, {icon: 5});
+                        layer.msg("删除失败！", {icon: 5});
                     }
                 }
             })

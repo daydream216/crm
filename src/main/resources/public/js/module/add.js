@@ -7,13 +7,13 @@ layui.use(['form', 'layer'], function () {
         var index= top.layer.msg("数据提交中,请稍后...",{icon:16,time:false,shade:0.8});
         $.post(ctx+"/module/save",data.field,function (res) {
             if(res.code==200){
-                top.layer.msg("操作成功");
+                top.layer.msg(res.msg);
                 top.layer.close(index);
                 layer.closeAll("iframe");
                 // 刷新父页面
                 parent.location.reload();
             }else{
-                layer.msg(res.msg);
+                layer.msg("操作失败");
             }
         });
         return false;

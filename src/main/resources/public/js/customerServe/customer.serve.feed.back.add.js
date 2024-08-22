@@ -22,14 +22,14 @@ layui.use(['form', 'layer'], function () {
             if (res.code == 200) {
                 setTimeout(function () {
                     top.layer.close(index);
-                    top.layer.msg("操作成功！");
+                    top.layer.msg(res.msg);
                     layer.closeAll("iframe");
                     //刷新父页面
                     parent.location.reload();
                 }, 500);
             } else {
                 layer.msg(
-                    res.msg, {
+                    "操作失败！", {
                         icon: 5
                     }
                 );

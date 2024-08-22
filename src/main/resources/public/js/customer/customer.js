@@ -83,10 +83,10 @@ layui.use(['table','layer',"form"],function(){
             layer.confirm("确认删除当前记录?",{icon: 3, title: "客户管理"},function (index) {
                 $.post(ctx+"/customer/delete",{cid:obj.data.id},function (data) {
                     if(data.code==200){
-                        layer.msg("删除成功");
+                        layer.msg(data.msg);
                         tableIns.reload();
                     }else{
-                        layer.msg(data.msg);
+                        layer.msg("删除失败");
                     }
                 })
             })

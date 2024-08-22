@@ -135,9 +135,10 @@ layui.use(['table','layer'],function(){
                 dataType:"json",
                 success:function (data) {
                     if(data.code==200){
+                        layer.msg(data.msg);
                         tableIns.reload();
                     }else{
-                        layer.msg(data.msg);
+                        layer.msg("删除失败");
                     }
                 }
             });

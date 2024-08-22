@@ -55,12 +55,13 @@ layui.use(['table','layer'],function(){
             layer.confirm("确认删除当前记录?",{icon: 3, title: "客户开发计划管理"},function (index) {
                 //发送ajax请求
                 $.post(ctx+"/cus_dev_plan/delete",{id:obj.data.id},function (data) {
+                    console.log(data);
                     if(data.code==200){
-                        layer.msg("删除成功");
+                        layer.msg(data.msg);
                         //重新加载表格
                         tableIns.reload();
                     }else{
-                        layer.msg(data.msg);
+                        layer.msg("删除失败");
                     }
                 })
             })
@@ -97,12 +98,12 @@ layui.use(['table','layer'],function(){
                 devResult:devResult
             },function (data) {
                 if(data.code==200){
-                    layer.msg("机会数据更新成功");
+                    layer.msg(data.msg);
                     layer.closeAll("iframe");
                     // 刷新父页面
                     parent.location.reload();
                 }else{
-                    layer.msg(data.msg);
+                    layer.msg("机会数据更新失败");
                 }
             })
         })
